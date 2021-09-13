@@ -3,7 +3,7 @@ module.exports = {
     title: `Kiefer Slaton`,
     description: `Web Developer in Ridgeland, MS`,
     author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    siteUrl: `https://kieferslaton.com`,
   },
   plugins: [
     {
