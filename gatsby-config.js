@@ -9,7 +9,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-strapi',
       options: {
-        apiURL: 'https://protected-reef-85895.herokuapp.com/',
+        apiURL: 'https://protected-reef-85895.herokuapp.com',
         collectionTypes: [`skills`, `work-experiences`, `educations`, `projects`],
         singleTypes: [`about-me`],
         queryLimit: 1000
