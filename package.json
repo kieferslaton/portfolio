@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@heroicons/react": "^1.0.4",
     "autoprefixer": "^10.3.4",
     "gatsby": "^3.13.0",
     "gatsby-core-utils": "^2.13.0",
@@ -15,6 +16,7 @@
     "gatsby-plugin-react-helmet": "^4.13.0",
     "gatsby-plugin-sharp": "^3.13.0",
     "gatsby-source-filesystem": "^3.13.0",
+    "gatsby-source-strapi": "^1.0.2",
     "gatsby-transformer-sharp": "^3.13.0",
     "gsap": "npm:@gsap/business@^3.7.1",
     "postcss": "^8.3.6",
@@ -22,6 +24,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
+    "react-icons": "^4.2.0",
     "tailwindcss": "^2.2.14"
   },
   "devDependencies": {

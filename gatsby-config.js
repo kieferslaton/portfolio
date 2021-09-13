@@ -1,11 +1,20 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    title: `Kiefer Slaton`,
+    description: `Web Developer in Ridgeland, MS`,
     author: `@gatsbyjs`,
     siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
   },
   plugins: [
+    {
+      resolve: 'gatsby-source-strapi',
+      options: {
+        apiURL: 'https://protected-reef-85895.herokuapp.com/',
+        collectionTypes: [`skills`, `work-experiences`, `educations`, `projects`],
+        singleTypes: [`about-me`],
+        queryLimit: 1000
+      },
+    },
     `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
