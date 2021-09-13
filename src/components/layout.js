@@ -10,25 +10,8 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
+import Footer from './footer'
 import "./layout.css"
-
-function useMousePosition() {
-  const [mousePosition, setMousePosition] = React.useState({ x: null, y: null });
-
-  React.useEffect(() => {
-    const mouseMoveHandler = (event) => {
-      const { clientX, clientY } = event;
-      setMousePosition({ x: clientX, y: clientY });
-    };
-    document.addEventListener("mousemove", mouseMoveHandler);
-
-    return () => {
-      document.removeEventListener("mousemove", mouseMoveHandler);
-    };
-  }, []);
-
-  return mousePosition;
-}
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -46,8 +29,7 @@ const Layout = ({ children }) => {
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div>
         <main>{children}</main>
-        <footer>
-        </footer>
+        <Footer />
       </div>
     </>
   )
