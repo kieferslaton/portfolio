@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Kiefer Slaton`,
@@ -7,12 +11,17 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-source-strapi',
+      resolve: "gatsby-source-strapi",
       options: {
-        apiURL: 'https://protected-reef-85895.herokuapp.com',
-        collectionTypes: [`skills`, `work-experiences`, `educations`, `projects`],
+        apiURL: process.env.STRAPI_URL,
+        collectionTypes: [
+          `skills`,
+          `work-experiences`,
+          `educations`,
+          `projects`,
+        ],
         singleTypes: [`about-me`],
-        queryLimit: 1000
+        queryLimit: 1000,
       },
     },
     `gatsby-plugin-postcss`,
