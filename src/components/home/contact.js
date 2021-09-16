@@ -13,7 +13,7 @@ const Contact = () => {
       .timeline({
         scrollTrigger: {
           trigger: contact.current,
-          start: "bottom bottom",
+          start: "bottom bottom+=100px",
         },
       })
       .to(contact.current, { opacity: 1, x: 0 })

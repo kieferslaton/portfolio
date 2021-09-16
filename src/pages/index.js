@@ -121,7 +121,7 @@ const IndexPage = () => {
         <Contact />
       </Layout>
       <svg
-        className="fixed w-1/12 bottom-4 right-4 text-white"
+        className="fixed w-1/6 lg:w-1/12 bottom-4 right-4 text-white"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 100 100"
         ref={arrow}
