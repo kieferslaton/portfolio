@@ -10,7 +10,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
-import Footer from './footer'
+import Footer from "./footer"
 import "./layout.css"
 
 const Layout = ({ children }) => {
@@ -28,8 +28,7 @@ const Layout = ({ children }) => {
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div>
-        <main>{children}</main>
-        <Footer />
+        <main className="overflow-x-hidden">{children}</main>
       </div>
     </>
   )

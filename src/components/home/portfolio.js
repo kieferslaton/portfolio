@@ -3,13 +3,9 @@ import { gsap } from "gsap"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const PortfolioItem = ({ project }) => {
-  console.log(project["Photo"])
-
   const image = getImage(
     project["Photo"]["localFile"]["childrenImageSharp"][0]["gatsbyImageData"]
   )
-
-  console.log(image)
 
   return (
     <div className="mb-10 md:px-10 lg:px-0" key={project["Name"]}>
@@ -63,7 +59,7 @@ const Portfolio = data => {
         <span className="flex-1 border-b-2 border-blue-500 ml-5 lg:ml-10"></span>
       </h2>
       {projects.map(project => (
-        <PortfolioItem project={project.node} />
+        <PortfolioItem project={project.node} key={project.node["Name"]} />
       ))}
     </div>
   )
