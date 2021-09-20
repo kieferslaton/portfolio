@@ -24,7 +24,7 @@ const PortfolioItem = ({ project }) => {
           </div>
           <p className="text-sm lg:text-base">{project["Description"]}</p>
         </div>
-        <div className="w-full lg:w-1/2 px-5 lg:-mt-10">
+        <div className="w-full lg:w-1/2 px-5 mb-5 lg:-mt-10 lg:mb-0">
           <a href={project["URL"]} target="_blank">
             <GatsbyImage alt={project["Name"]} image={image} />
           </a>
@@ -35,7 +35,11 @@ const PortfolioItem = ({ project }) => {
 }
 
 const Portfolio = data => {
-  const projects = data.data.allStrapiProjects.edges
+  const projects = data.data.allStrapiProjects.edges.sort((a, b) => {
+    return a.node["strapiId"] - b.node["strapiId"]
+  })
+
+  console.log(projects)
 
   const portfolio = React.useRef()
 

@@ -22,6 +22,7 @@ const IndexPage = () => {
       allStrapiProjects {
         edges {
           node {
+            strapiId
             Description
             Name
             Photo {
