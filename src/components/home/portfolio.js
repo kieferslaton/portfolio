@@ -25,7 +25,7 @@ const PortfolioItem = ({ project }) => {
           <p className="text-sm lg:text-base">{project["Description"]}</p>
         </div>
         <div className="w-full lg:w-1/2 px-5 lg:-mt-10">
-          <a href={project["URL"]}>
+          <a href={project["URL"]} target="_blank">
             <GatsbyImage alt={project["Name"]} image={image} />
           </a>
         </div>
