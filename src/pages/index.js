@@ -18,59 +18,74 @@ gsap.registerPlugin(TextPlugin, ScrollTrigger, SplitText, DrawSVGPlugin)
 
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
-    query {
-      allStrapiProjects {
+    query MyQuery {
+      allWpPage {
         edges {
           node {
-            strapiId
-            Description
-            Name
-            Photo {
-              alternativeText
-              localFile {
-                childrenImageSharp {
-                  gatsbyImageData
+            title
+            homepageFields {
+              resume {
+                aboutMe
+                education {
+                  ... on WpEducation {
+                    id
+                    EducationFields {
+                      date
+                      description
+                    }
+                    title
+                  }
+                }
+                skills {
+                  ... on WpSkill {
+                    id
+                    title
+                    skillCategories {
+                      nodes {
+                        name
+                      }
+                    }
+                  }
+                }
+                work {
+                  ... on WpWorkExperience {
+                    id
+                    EducationFields {
+                      date
+                      description
+                    }
+                    title
+                  }
                 }
               }
             }
-            URL
-            Technologies {
-              Technology
+          }
+        }
+      }
+      allWpProject(sort: { fields: ProjectFields___order }) {
+        edges {
+          node {
+            title
+            featuredImage {
+              node {
+                sourceUrl
+                localFile {
+                  childrenImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
             }
-          }
-        }
-      }
-      strapiAboutMe {
-        Content
-      }
-      allStrapiEducations {
-        edges {
-          node {
-            School {
-              Degree
-              Description
-              School
-              Years
-            }
-          }
-        }
-      }
-      allStrapiSkills {
-        edges {
-          node {
-            Category
-            Name
-          }
-        }
-      }
-      allStrapiWorkExperiences {
-        edges {
-          node {
-            Job {
-              Company
-              Dates
-              Description
-              Title
+            content
+            ProjectFields {
+              skills {
+                ... on WpSkill {
+                  id
+                  title
+                }
+              }
+              order
+              url
             }
           }
         }

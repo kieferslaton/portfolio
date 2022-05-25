@@ -5,17 +5,20 @@ const Resume = (data, expandCursor, contractCursor) => {
   const [activeResumeItem, setActiveResumeItem] = React.useState("About")
   const resumeItems = ["About", "Skills", "Work", "Education"]
 
-  const skills = data.data.allStrapiSkills.edges
-  const experience = data.data.allStrapiWorkExperiences.edges
-  const education = data.data.allStrapiEducations.edges
-  const about = data.data.strapiAboutMe["Content"]
-  const parsedSkills = []
+  const skills = data.data.allWpPage.edges[0].node.homepageFields.resume.skills
+  const experience =
+    data.data.allWpPage.edges[0].node.homepageFields.resume.work
+  const education =
+    data.data.allWpPage.edges[0].node.homepageFields.resume.education
+  const about = data.data.allWpPage.edges[0].node.homepageFields.resume.aboutMe
+  const parsedSkills = {}
 
   skills.forEach(skill => {
-    if (!Object.keys(parsedSkills).includes(skill.node["Category"])) {
-      parsedSkills[skill.node["Category"]] = [skill.node["Name"]]
+    var cat = skill.skillCategories.nodes[0].name
+    if (parsedSkills[cat]) {
+      parsedSkills[cat].push(skill.title)
     } else {
-      parsedSkills[skill.node["Category"]].push(skill.node["Name"])
+      parsedSkills[cat] = [skill.title]
     }
   })
 
@@ -48,13 +51,13 @@ const Resume = (data, expandCursor, contractCursor) => {
     resumeSwitch = (
       <div className="flex flex-col md:px-10 lg:px-0 lg:ml-24">
         {experience.map(item => (
-          <div className="mb-5" key={item.node["Job"]["Title"]}>
-            <h3 className="mb-1">{item.node["Job"]["Title"]}</h3>
+          <div className="mb-5" key={item.title}>
+            <h3 className="mb-1">{item.title}</h3>
             <h4 className="text-sm lg:text-base text-blue-500 mb-3">
-              {item.node["Job"]["Company"]}, {item.node["Job"]["Dates"]}
+              {item.EducationFields.date}
             </h4>
             <p className="text-sm lg:text-base">
-              {item.node["Job"]["Description"]}
+              {item.EducationFields.description}
             </p>
           </div>
         ))}
@@ -64,21 +67,19 @@ const Resume = (data, expandCursor, contractCursor) => {
     resumeSwitch = (
       <div className="flex flex-col md:px-10 lg:px-0 lg:ml-24">
         {education.map(item => (
-          <div className="mb-5" key={item.node["School"]["Degree"]}>
-            <h3 className="mb-1">{item.node["School"]["Degree"]}</h3>
+          <div className="mb-5" key={item.title}>
+            <h3 className="mb-1">{item.title}</h3>
             <h4 className="text-sm lg:text-base text-blue-500 mb-3">
-              {item.node["School"]["School"]}, {item.node["School"]["Years"]}
+              {item.EducationFields.date}
             </h4>
             <p className="text-sm lg:text-base">
-              {item.node["School"]["Description"]}
+              {item.EducationFields.description}
             </p>
           </div>
         ))}
       </div>
     )
   }
-
-  console.log(expandCursor)
 
   const resume = React.useRef()
 

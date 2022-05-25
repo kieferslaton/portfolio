@@ -38,13 +38,13 @@ const Contact = () => {
         </a>
       </div>
       <div className="flex justify-center items-center py-10">
-        <a href="linkedin.com/kieferslaton">
+        <a href="https://linkedin.com/kieferslaton">
           <FaLinkedin className="text-blue-500 text-2xl mx-2" />
         </a>
-        <a href="github.com/kieferslaton">
+        <a href="https://github.com/kieferslaton">
           <FaGithub className="text-blue-500 text-2xl mx-2" />
         </a>
-        <a href="instagram.com/kieferslaton">
+        <a href="https://instagram.com/kieferslaton">
           <FaInstagram className="text-blue-500 text-2xl mx-2" />
         </a>
       </div>

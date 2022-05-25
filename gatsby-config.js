@@ -11,17 +11,9 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "gatsby-source-strapi",
+      resolve: "gatsby-source-wordpress",
       options: {
-        apiURL: process.env.STRAPI_URL,
-        collectionTypes: [
-          `skills`,
-          `work-experiences`,
-          `educations`,
-          `projects`,
-        ],
-        singleTypes: [`about-me`],
-        queryLimit: 1000,
+        url: `http://wp.kieferslaton.com?graphql=true`,
       },
     },
     `gatsby-plugin-postcss`,

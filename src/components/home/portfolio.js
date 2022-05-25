@@ -4,29 +4,33 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 const PortfolioItem = ({ project }) => {
   const image = getImage(
-    project["Photo"]["localFile"]["childrenImageSharp"][0]["gatsbyImageData"]
+    project.featuredImage?.node?.localFile.childrenImageSharp[0].gatsbyImageData
   )
 
   return (
-    <div className="mb-10 md:px-10 lg:px-0" key={project["Name"]}>
-      <h3>{project["Name"]}</h3>
+    <div className="mb-10 md:px-10 lg:px-0" key={project.ProjectFields.order}>
+      <h3>{project.title}</h3>
       <div className="flex flex-col-reverse lg:flex-row">
         <div className="w-full lg:w-1/2">
           <div className="flex flex-wrap mb-3">
-            {project["Technologies"].map(tech => (
+            {project.ProjectFields.skills.map(skill => (
               <div
                 className="bg-blue-600 rounded-full px-3 py-1 mr-1 mb-2 text-xs font-bold text-white"
-                key={tech["Technology"]}
+                key={skill.title}
               >
-                {tech["Technology"]}
+                {skill.title}
               </div>
             ))}
           </div>
-          <p className="text-sm lg:text-base">{project["Description"]}</p>
+          <div dangerouslySetInnerHTML={{ __html: project.content }}></div>
         </div>
         <div className="w-full lg:w-1/2 px-5 mb-5 lg:-mt-10 lg:mb-0">
-          <a href={project["URL"]} target="_blank">
-            <GatsbyImage alt={project["Name"]} image={image} />
+          <a href={project.ProjectFields.url} target="_blank" rel="noreferrer">
+            <GatsbyImage
+              className="border border-gray-200"
+              alt={project.title}
+              image={image}
+            />
           </a>
         </div>
       </div>
@@ -35,11 +39,7 @@ const PortfolioItem = ({ project }) => {
 }
 
 const Portfolio = data => {
-  const projects = data.data.allStrapiProjects.edges.sort((a, b) => {
-    return a.node["strapiId"] - b.node["strapiId"]
-  })
-
-  console.log(projects)
+  const projects = data.data.allWpProject.edges
 
   const portfolio = React.useRef()
 
@@ -63,7 +63,7 @@ const Portfolio = data => {
         <span className="flex-1 border-b-2 border-blue-500 ml-5 lg:ml-10"></span>
       </h2>
       {projects.map(project => (
-        <PortfolioItem project={project.node} key={project.node["Name"]} />
+        <PortfolioItem project={project.node} key={project.node.title} />
       ))}
     </div>
   )
